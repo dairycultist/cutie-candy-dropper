@@ -5,7 +5,7 @@ func _ready() -> void:
 		
 		if body is RigidBody2D:
 			$Sprite.scale = Vector2(2.0, 2.0)
-		
+			body.apply_central_impulse((body.global_position - global_position).normalized() * 18.0)
 	)
 
 func _process(delta: float) -> void:

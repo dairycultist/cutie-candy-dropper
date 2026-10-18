@@ -36,10 +36,19 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	
+	for candy in $Candies.get_children():
+		
+		var candy_position = candy.get_node("Bone-0").global_position
+		
+		if candy_position.y > $Candies.global_position.y:
+			$Avatar.create_candy_particles(candy_position, 20)
+			candy.queue_free()
+	
 	if candy_queue.size() > 0:
 		
 		if candy_queue.size() > 1:
 			$NextSprite.texture = candy_queue[1].texture
+			$NextSprite.modulate = candy_queue[1].modulate
 	
 		$PreviewSprite.texture = candy_queue[0].texture
 		$PreviewSprite.modulate = candy_queue[0].modulate
@@ -49,6 +58,6 @@ func _process(_delta: float) -> void:
 			
 			var candy_info = candy_queue.pop_front()
 			var candy = candy_info.scene.instantiate()
-			add_child(candy)
-			candy.position = $PreviewSprite.position - candy_info.texture.get_size() / 2.0
+			$Candies.add_child(candy)
+			candy.global_position = $PreviewSprite.global_position - candy_info.texture.get_size() / 2.0
 			candy.color = candy_info.modulate

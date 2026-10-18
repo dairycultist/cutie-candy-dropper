@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dqyxb167e5h0x"]
+
+[ext_resource type="Texture2D" uid="uid://wls7cnaovxo2" path="res://icon.svg" id="1_bv06f"]
+
+[node name="CandyParticle" type="Sprite2D" unique_id=464695897]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_bv06f")
