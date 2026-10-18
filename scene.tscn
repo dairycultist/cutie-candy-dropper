@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://dn5il2bc8w1bt" path="res://plinko_board.gd" id="1_u3cyc"]
 [ext_resource type="Texture2D" uid="uid://dsjcjcahskh7a" path="res://background.png" id="4_u3cyc"]
 [ext_resource type="PackedScene" uid="uid://6ml68ysq4rei" path="res://candies/candy_circle.tscn" id="4_y2354"]
-[ext_resource type="PackedScene" uid="uid://s543lce22324" path="res://candies/candy_star.tscn" id="5_ni31j"]
 [ext_resource type="Script" uid="uid://cgccg74aalrpg" path="res://dropper.gd" id="6_y2354"]
 [ext_resource type="Texture2D" uid="uid://uiycuagl3kt7" path="res://candies/candy_circle.png" id="7_ni31j"]
 
@@ -38,6 +37,7 @@ texture = ExtResource("4_u3cyc")
 [node name="Camera2D" type="Camera2D" parent="." unique_id=758944783]
 
 [node name="PlinkoBoard" type="StaticBody2D" parent="." unique_id=1342852167]
+position = Vector2(0, -96)
 script = ExtResource("1_u3cyc")
 
 [node name="Sprite" type="Sprite2D" parent="PlinkoBoard" unique_id=1804962412]
@@ -74,7 +74,7 @@ shape = SubResource("RectangleShape2D_y2354")
 [node name="Dropper" type="Node2D" parent="." unique_id=1747622783]
 position = Vector2(0, -428)
 script = ExtResource("6_y2354")
-candy_scenes = Array[PackedScene]([ExtResource("4_y2354"), ExtResource("5_ni31j")])
+candy_scenes = Array[PackedScene]([ExtResource("4_y2354")])
 
 [node name="PreviewSprite" type="Sprite2D" parent="Dropper" unique_id=926108479]
 texture = ExtResource("7_ni31j")

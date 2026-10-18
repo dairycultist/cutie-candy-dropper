@@ -6,18 +6,18 @@ func _ready() -> void:
 	
 	const spacing := 75.0
 	
-	for y in range(-5, 2):
+	for y in range(-4, 2):
 		
 		if y % 2 == 0:
 
 			for x in range(-2, 2):
 				var peg := PEG_SCENE.instantiate()
 				add_child(peg)
-				peg.position = Vector2(x * spacing * 2 + spacing, y * spacing)
+				peg.position = Vector2(x * spacing * 2 + spacing, y * spacing + 30.0)
 		
 		else:
 			
 			for x in range(-1, 2):
 				var peg := PEG_SCENE.instantiate()
 				add_child(peg)
-				peg.position = Vector2(x * spacing * 2, y * spacing)
+				peg.position = Vector2(x * spacing * 2, y * spacing + 30.0)

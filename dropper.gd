@@ -20,7 +20,7 @@ func _ready() -> void:
 		candy_info.scene = scene
 		
 		var temp := scene.instantiate()
-		candy_info.texture = temp.get_node("Sprite").texture
+		candy_info.texture = temp.texture
 		temp.queue_free()
 		
 		candy_infos.append(candy_info)
@@ -50,5 +50,5 @@ func _process(_delta: float) -> void:
 			var candy_info = candy_queue.pop_front()
 			var candy = candy_info.scene.instantiate()
 			add_child(candy)
-			candy.position = $PreviewSprite.position
-			candy.get_node("Sprite").modulate = candy_info.modulate
+			candy.position = $PreviewSprite.position - candy_info.texture.get_size() / 2.0
+			candy.color = candy_info.modulate
