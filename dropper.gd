@@ -2,9 +2,10 @@ extends Node2D
 
 @export var candy_scenes: Array[PackedScene]
 
-class CandyInfo:
+class CandyInfo extends Resource:
 	var scene: PackedScene
 	var texture: CompressedTexture2D
+	var modulate: Color
 
 var candy_infos: Array[CandyInfo]
 
@@ -26,7 +27,12 @@ func _ready() -> void:
 	
 	# create a candy queue
 	for i in range(20):
-		candy_queue.append(candy_infos.pick_random())
+		var base_candy_info = candy_infos.pick_random()
+		var candy_info := CandyInfo.new()
+		candy_info.scene = base_candy_info.scene
+		candy_info.texture = base_candy_info.texture
+		candy_info.modulate = Color.from_ok_hsl(randf(), 1.0, 0.7)
+		candy_queue.append(candy_info)
 
 func _process(_delta: float) -> void:
 	
@@ -36,10 +42,13 @@ func _process(_delta: float) -> void:
 			$NextSprite.texture = candy_queue[1].texture
 	
 		$PreviewSprite.texture = candy_queue[0].texture
+		$PreviewSprite.modulate = candy_queue[0].modulate
 		$PreviewSprite.global_position.x = get_global_mouse_position().x
 		
 		if Input.is_action_just_released("drop"):
 			
-			var candy = candy_queue.pop_front().scene.instantiate()
+			var candy_info = candy_queue.pop_front()
+			var candy = candy_info.scene.instantiate()
 			add_child(candy)
 			candy.position = $PreviewSprite.position
+			candy.get_node("Sprite").modulate = candy_info.modulate
