@@ -1,22 +1,31 @@
-extends Sprite2D
+extends Node2D
 
 const CANDY_PARTICLE_PREFAB = preload("res://candy_particle.tscn")
 
 var particle_to_velocity: Dictionary[Sprite2D, Vector2]
+var particles: Array[Sprite2D]
+
+var score = 0:
+	set(value):
+		$Label.text = str("Score: ", value)
+		score = value
 
 func _ready() -> void:
 	
 	for i in range(100):
 		var particle = CANDY_PARTICLE_PREFAB.instantiate()
 		add_child(particle)
+		particles.append(particle)
 		particle.position = Vector2.ZERO
 		particle_to_velocity.set(particle, Vector2.ZERO)
 
 func _process(delta: float) -> void:
 	
-	scale = lerp(scale, Vector2.ONE, 10.0 * delta)
+	$Sprite.position.x = sin(Time.get_ticks_msec() / 200.0) * 10.0
+	$Sprite.rotation = cos(Time.get_ticks_msec() / 200.0) * 0.1
+	$Sprite.scale = lerp($Sprite.scale, Vector2.ONE, 10.0 * delta)
 	
-	for particle in get_children():
+	for particle in particles:
 		
 		var velocity = particle_to_velocity.get(particle)
 		
@@ -30,13 +39,15 @@ func _process(delta: float) -> void:
 			else:
 				velocity = Vector2.ZERO
 				particle.position = Vector2.ZERO
-				scale *= 1.0 + randf() * 0.03
+				$Sprite.scale *= 1.0 + randf() * 0.03
+				score += 1
 			
 		particle_to_velocity.set(particle, velocity)
 
+@warning_ignore("shadowed_variable_base_class")
 func create_candy_particles(at: Vector2, count: int, modulate: Color):
 	
-	for particle in get_children():
+	for particle in particles:
 		
 		if particle_to_velocity.get(particle) == Vector2.ZERO:
 			
@@ -47,7 +58,7 @@ func create_candy_particles(at: Vector2, count: int, modulate: Color):
 			
 			direction = Vector2(direction.y, -direction.x) + Vector2(randfn(0.0, 0.2), randfn(0.0, 0.2))
 			
-			particle_to_velocity.set(particle, direction * 1000.0)
+			particle_to_velocity.set(particle, direction * 1200.0)
 			
 			count -= 1
 			

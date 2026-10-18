@@ -51,10 +51,20 @@ position = Vector2(0, -428)
 script = ExtResource("6_y2354")
 candy_scenes = Array[PackedScene]([ExtResource("4_y2354"), ExtResource("5_ni31j")])
 
-[node name="Avatar" type="Sprite2D" parent="Dropper" unique_id=45144169]
+[node name="Avatar" type="Node2D" parent="Dropper" unique_id=1083493675]
 position = Vector2(191, 799)
-texture = ExtResource("3_3253y")
 script = ExtResource("9_73fnb")
+
+[node name="Sprite" type="Sprite2D" parent="Dropper/Avatar" unique_id=1699818574]
+texture = ExtResource("3_3253y")
+
+[node name="Label" type="Label" parent="Dropper/Avatar" unique_id=442081809]
+offset_left = -393.0
+offset_top = -35.0
+offset_right = -353.0
+offset_bottom = -12.0
+theme_override_font_sizes/font_size = 52
+text = "Score: 0"
 
 [node name="Candies" type="Node2D" parent="Dropper" unique_id=940641132]
 position = Vector2(0, 592)
@@ -73,10 +83,11 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -134.56407
-offset_top = -50.803406
-offset_right = -94.56407
-offset_bottom = -27.803406
+offset_left = -156.78632
+offset_top = -57.64103
+offset_right = -73.78632
+offset_bottom = -7.6410275
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 36
 text = "Next"
