@@ -41,7 +41,7 @@ func _process(_delta: float) -> void:
 		var candy_position = candy.get_node("Bone-0").global_position
 		
 		if candy_position.y > $Candies.global_position.y:
-			$Avatar.create_candy_particles(candy_position, 20)
+			$Avatar.create_candy_particles(candy_position, 20, candy.color)
 			candy.queue_free()
 	
 	if candy_queue.size() > 0:
