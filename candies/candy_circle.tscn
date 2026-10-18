@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://6ml68ysq4rei"]
+
+[ext_resource type="Texture2D" uid="uid://uiycuagl3kt7" path="res://candies/candy_circle.png" id="1_og04b"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_u3cyc"]
+bounce = 0.5
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u3cyc"]
+radius = 32.0
+
+[node name="CandyCircle" type="RigidBody2D" unique_id=246723862]
+mass = 0.01
+physics_material_override = SubResource("PhysicsMaterial_u3cyc")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=113745563]
+texture = ExtResource("1_og04b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=557904892]
+shape = SubResource("CircleShape2D_u3cyc")
