@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bd316lgtuhihy"]
+
+[ext_resource type="Texture2D" uid="uid://cvcgfqcxi1eoy" path="res://peg.png" id="1_y34qd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lxpj2"]
+radius = 8.0
+
+[node name="Peg" type="StaticBody2D" unique_id=1530769541]
+
+[node name="Peg" type="Sprite2D" parent="." unique_id=1608041161]
+texture = ExtResource("1_y34qd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=178074686]
+shape = SubResource("CircleShape2D_lxpj2")
